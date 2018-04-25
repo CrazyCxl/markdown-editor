@@ -3,7 +3,6 @@ import QtQuick 2.2
 Rectangle{
     radius: width/3
     color:root.color
-
     property string source
     signal clicked
 
@@ -17,7 +16,7 @@ Rectangle{
     MouseArea{
         anchors.fill: parent
         property color normalColor: root.color
-        property color hoverColor: "#ffffff"
+        property color hoverColor: "#f6f6f6"
         property color pressColor: "#e0e0e0"
 
         hoverEnabled: true

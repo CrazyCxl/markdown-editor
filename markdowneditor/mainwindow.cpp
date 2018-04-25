@@ -14,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->editor->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     ui->preview->setContextMenuPolicy(Qt::NoContextMenu);
 
     PreviewPage *page = new PreviewPage(this);

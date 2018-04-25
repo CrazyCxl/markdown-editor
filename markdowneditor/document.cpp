@@ -1,4 +1,10 @@
 #include "document.h"
+#include <QFile>
+
+Document::Document(QObject *parent)
+    :QObject(parent)
+{
+}
 
 void Document::setText(const QString &text)
 {

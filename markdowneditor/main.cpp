@@ -1,14 +1,12 @@
 #include "document.h"
-#include "mainwindow.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQml>
+#include <QIcon>
 
 int main(int argc, char *argv[])
 {
-//    MainWindow window;
-//    window.show();
-
     QGuiApplication app(argc, argv);
 
 //    if(app.arguments().contains("--log")){
@@ -20,6 +18,7 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon(":/logo/images/32x32/markdown-editor-logo.png"));
 
     QQmlApplicationEngine engine;
+    qmlRegisterType<Document>("cxl.normal", 1, 0, "Document");
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
