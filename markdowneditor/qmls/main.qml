@@ -3,7 +3,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.1
-
+import QtQuick.Controls.Styles 1.4
 
 import "./custom/custom"
 //import "./custom"
@@ -26,12 +26,16 @@ ApplicationWindow {
 
     TextArea{
         id:editor
-        anchors.top: title_bar.bottom
+        anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: drog_line.left
         anchors.bottom: parent.bottom
-        anchors.margins: root.stepSize
         anchors.leftMargin: root.stepSize*3
+        anchors.bottomMargin: root.stepSize*3
+        anchors.topMargin: root.stepSize*3
+
+        backgroundVisible:false
+
 
         Component.onCompleted: {
             var xhr = new XMLHttpRequest;
@@ -45,10 +49,23 @@ ApplicationWindow {
             };
             xhr.send();
         }
+
+        style: TextAreaStyle {
+            frame:null
+        }
+
     }
 
     DragLine{
         id:drog_line
+    }
+
+    Rectangle{
+        color:"#ffffff"
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.left: viewer.left
     }
 
     MarkdownViewer{
@@ -57,6 +74,8 @@ ApplicationWindow {
         anchors.left: drog_line.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: root.stepSize*3
+        anchors.topMargin: root.stepSize*3
 
         text:editor.text
     }
