@@ -52,6 +52,25 @@ ApplicationWindow {
 
         style: TextAreaStyle {
             frame:null
+            decrementControl:null
+            incrementControl:null
+            handle: Item {
+                implicitWidth: 14
+                implicitHeight: 26
+                Rectangle {
+                    color: "#aaaaaa"
+                    anchors.fill: parent
+                    anchors.topMargin: 6
+                    anchors.leftMargin: 4
+                    anchors.rightMargin: 4
+                    anchors.bottomMargin: 6
+                    radius: width/2
+                }
+            }
+            scrollBarBackground: Item {
+                implicitWidth: 14
+                implicitHeight: 26
+            }
         }
 
     }
