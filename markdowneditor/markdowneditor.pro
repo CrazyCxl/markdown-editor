@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += webenginewidgets webchannel
+QT += webenginewidgets webchannel qml quick
 CONFIG += c++11
 
 HEADERS += \
@@ -15,10 +15,11 @@ SOURCES = \
     document.cpp
 
 RESOURCES = \
-    resources/markdowneditor.qrc
+    resources/markdowneditor.qrc \
+    resources/images.qrc \
+    qmls/base.qrc
 
-FORMS += \
-    mainwindow.ui
+FORMS +=
 
 DISTFILES += \
     resources/3rdparty/MARKDOWN-LICENSE.txt \

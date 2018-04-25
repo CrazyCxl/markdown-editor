@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>images/32x32/markdown-editor-logo.png</file>
+    </qresource>
+    <qresource prefix="/item">
+        <file>images/svg/delete.svg</file>
+        <file>images/svg/max.svg</file>
+        <file>images/svg/min.svg</file>
+    </qresource>
+</RCC>

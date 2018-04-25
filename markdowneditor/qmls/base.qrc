@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+    </qresource>
+    <qresource prefix="/custom">
+        <file>custom/TitleBar.qml</file>
+        <file>custom/TristateBtn.qml</file>
+    </qresource>
+</RCC>

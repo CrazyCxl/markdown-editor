@@ -1,16 +1,26 @@
 #include "document.h"
 #include "mainwindow.h"
 
-#include <QApplication>
-#include <QFile>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QApplication a(argc, argv);
+//    MainWindow window;
+//    window.show();
 
-    MainWindow window;
-    window.show();
+    QGuiApplication app(argc, argv);
 
-    return a.exec();
+//    if(app.arguments().contains("--log")){
+//        is_loged = true;
+//    }
+
+//    qInstallMessageHandler(FileMessageHandler);
+
+    app.setWindowIcon(QIcon(":/logo/images/32x32/markdown-editor-logo.png"));
+
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+    return app.exec();
 }
