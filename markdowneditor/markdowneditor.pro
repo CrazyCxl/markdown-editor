@@ -4,14 +4,10 @@ QT += webenginewidgets webchannel qml quick
 CONFIG += c++11
 
 HEADERS += \
-    mainwindow.h \
-    previewpage.h \
     document.h
 
 SOURCES = \
     main.cpp \
-    mainwindow.cpp \
-    previewpage.cpp \
     document.cpp
 
 RESOURCES = \
