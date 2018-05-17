@@ -1,12 +1,11 @@
-import QtQuick 2.2
+﻿import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.1
 import QtQuick.Controls.Styles 1.4
 
-import "./custom/custom"
-//import "./custom"
+import "./custom"
 
 ApplicationWindow {
     id:root
@@ -16,7 +15,7 @@ ApplicationWindow {
     minimumWidth: 640
     minimumHeight: 480
     color:"#efefef"
-    flags: Qt.FramelessWindowHint | Qt.Window
+//    flags: Qt.FramelessWindowHint | Qt.Window
     property int stepSize: 15
 
     MouseArea{
@@ -24,55 +23,40 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
-    TextArea{
+    MarkdownEditor{
         id:editor
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: drog_line.left
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: root.stepSize*3
-        anchors.bottomMargin: root.stepSize*3
-        anchors.topMargin: root.stepSize*3
+    }
 
-        backgroundVisible:false
+    Rectangle {
+      id: scroller
+      anchors.right: drog_line.left
+      width: 8
+      height: 45
+      radius: width/2
+      color: "grey"
+      property real position
+      property bool scroll_lock: false
 
+      onYChanged: {
+          scroll_lock = true
+          position = y / (root.height - height)
+          scroll_lock = false
+      }
 
-        Component.onCompleted: {
-            var xhr = new XMLHttpRequest;
-            xhr.open("GET", "/default.md");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == XMLHttpRequest.DONE) {
-                    var response =
-                    // use file contents as required
-                    editor.text = xhr.responseText
-                }
-            };
-            xhr.send();
-        }
+      onPositionChanged: {
+          if(!scroll_lock){
+              position = position>1?1:position
+              y= position * (root.height - height)
+          }
+      }
 
-        style: TextAreaStyle {
-            frame:null
-            decrementControl:null
-            incrementControl:null
-            handle: Item {
-                implicitWidth: 14
-                implicitHeight: 26
-                Rectangle {
-                    color: "#aaaaaa"
-                    anchors.fill: parent
-                    anchors.topMargin: 6
-                    anchors.leftMargin: 4
-                    anchors.rightMargin: 4
-                    anchors.bottomMargin: 6
-                    radius: width/2
-                }
-            }
-            scrollBarBackground: Item {
-                implicitWidth: 14
-                implicitHeight: 26
-            }
-        }
-
+      MouseArea {
+        anchors.fill: parent
+        drag.target: parent
+        drag.minimumY: 0
+        drag.maximumY: root.height - height
+        drag.axis: Drag.YAxis
+      }
     }
 
     DragLine{
@@ -99,13 +83,13 @@ ApplicationWindow {
         text:editor.text
     }
 
-    TitleBar{
-        id:title_bar
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.margins: root.stepSize
-        anchors.topMargin: root.stepSize/2
-    }
+//    TitleBar{
+//        id:title_bar
+//        anchors.left: parent.left
+//        anchors.right: parent.right
+//        anchors.margins: root.stepSize
+//        anchors.topMargin: root.stepSize/2
+//    }
 
     Component.onCompleted: {
 

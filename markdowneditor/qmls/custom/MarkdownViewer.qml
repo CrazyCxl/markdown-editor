@@ -1,4 +1,4 @@
-import QtQuick 2.2
+﻿import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtWebChannel 1.0
 import QtWebEngine 1.1
@@ -14,9 +14,8 @@ Item {
         anchors.fill: parent
         WebEngineView{
             id:web_view
+            anchors.fill: parent
             url: "qrc:/index.html"
-            width:parent.width
-            height:parent.height
             webChannel:WebChannel{
                 registeredObjects:[m_content]
             }
@@ -27,12 +26,6 @@ Item {
                 WebChannel.id:"content"
             }
 
-            Connections {
-                target:editor.flickableItem
-                onContentYChanged: {
-                    flick.contentY = editor.flickableItem.contentY
-                }
-            }
             onLoadingChanged: {
                 if (web_view.loadProgress == 100) {
                     web_view.runJavaScript(
@@ -51,6 +44,12 @@ Item {
             }
         }
 
+        Connections {
+            target:scroller
+            onPositionChanged: {
+                flick.contentY = scroller.position * (flick.contentHeight-height)
+            }
+        }
     }
 
 

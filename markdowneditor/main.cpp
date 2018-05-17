@@ -1,13 +1,16 @@
-#include "document.h"
+﻿#include "document.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtQml>
+#include <QtWebEngine/QtWebEngine>
 #include <QIcon>
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QGuiApplication app(argc, argv);
+    QtWebEngine::initialize();
 
 //    if(app.arguments().contains("--log")){
 //        is_loged = true;

@@ -1,11 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-    </qresource>
-    <qresource prefix="/custom">
-        <file>custom/TitleBar.qml</file>
-        <file>custom/TristateBtn.qml</file>
         <file>custom/DragLine.qml</file>
         <file>custom/MarkdownViewer.qml</file>
+        <file>custom/TitleBar.qml</file>
+        <file>custom/TristateBtn.qml</file>
+        <file>custom/MarkdownEditor.qml</file>
     </qresource>
 </RCC>
