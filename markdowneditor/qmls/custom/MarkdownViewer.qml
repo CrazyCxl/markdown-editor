@@ -10,6 +10,8 @@ import cxl.normal 1.0
 Flickable {
     id: flick
     property string text
+    boundsBehavior: Flickable.StopAtBounds
+    ScrollBar.vertical: scroller
     WebEngineView{
         id:web_view
         anchors.fill: parent
@@ -42,11 +44,25 @@ Flickable {
         }
     }
 
-    Connections {
-        target:editor
-        onContentYChanged:  {
-            flick.contentY = editor.contentY/(editor.contentHeight-editor.height) * (flick.contentHeight-height)
-        }
+    Timer{
+        id:reload_timer
+        interval: 100
+        onTriggered: web_view.reload()
+    }
+
+    onXChanged: {
+        reload_timer.restart()
+    }
+
+//    Connections {
+//        target:editor
+//        onContentYChanged:  {
+//            flick.contentY = editor.contentY/(editor.contentHeight-editor.height) * (flick.contentHeight-height)
+//        }
+//    }
+
+    Component.onCompleted: {
+        reload_timer.stop() //ignore first x change
     }
 }
 

@@ -10,7 +10,7 @@ Flickable{
     anchors.leftMargin: root.stepSize*3
     anchors.bottomMargin: root.stepSize*3
     anchors.topMargin: root.stepSize*3
-
+    boundsBehavior: Flickable.StopAtBounds
     ScrollBar.vertical: scroller
     property string text:text_area.text
     TextArea.flickable:  TextArea{
