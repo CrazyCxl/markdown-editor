@@ -91,6 +91,9 @@ CONFIG(release, debug|release){
     CopyToDestDir($$[QT_HOST_BINS]/Qt5WebChannel.dll)
 }
 
+win32 {
+    QML_IMPORT_PATH = D:\Qt\5.10.1\msvc2017_64\qml
+}
 # install
 target.path = $$PWD/bin
 plugins_platforms.path = $$PWD/bin/platforms
