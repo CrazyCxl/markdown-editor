@@ -1,6 +1,8 @@
 # markdown-editor
 A qml markdown editor
 
+![home](https://raw.githubusercontent.com/CrazyCxl/markdown-editor/master/screenShot/home.png)
+
 But not done yet...
 
 # Reference
