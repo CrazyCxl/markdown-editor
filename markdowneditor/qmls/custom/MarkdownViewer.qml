@@ -3,6 +3,7 @@ import QtQuick.Controls 2.2
 import QtWebChannel 1.0
 import QtWebEngine 1.1
 import QtQml 2.2
+import QtWebEngine 1.6
 
 import cxl.normal 1.0
 
@@ -10,12 +11,14 @@ import cxl.normal 1.0
 Flickable {
     id: flick
     property string text
-    boundsBehavior: Flickable.StopAtBounds
+//    boundsBehavior: Flickable.StopAtBounds
     ScrollBar.vertical: scroller
+    onContentHeightChanged: console.log("onContentHeightChanged "+contentHeight)
     WebEngineView{
         id:web_view
-        anchors.fill: parent
         url: "qrc:/index.html"
+        anchors.fill: parent
+        settings.showScrollBars:false
         webChannel:WebChannel{
             registeredObjects:[m_content]
         }
@@ -40,6 +43,64 @@ Flickable {
                         flick.contentWidth = Math.max (
                             i_actualPageWidth, flick.width);
                     })
+            }
+        }
+    }
+
+    MouseArea{
+        id:view_area
+        width: web_view.width
+        height: web_view.height
+        property bool callScrollUp: false
+        property double  scrollEnhance: 0
+        onWheel: {
+            scroll_run_timer.stop()
+            scroll_stop_timer.stop()
+            scroll_start_timer.stop()
+            if(wheel.angleDelta.y > 0){
+                callScrollUp = false
+            }else{
+                callScrollUp = true
+            }
+            scroller.stepSize = 0.02
+            updateScroller()
+            scroll_start_timer.start()
+        }
+
+        function updateScroller(){
+            if(callScrollUp){
+                scroller.increase()
+            }else{
+                scroller.decrease()
+            }
+        }
+
+        Timer{
+            id:scroll_run_timer
+            interval: 10
+            repeat: true
+            onTriggered: {
+                view_area.updateScroller()
+                scroll_run_timer.interval++
+                scroller.stepSize -= scroller.stepSize/5
+            }
+        }
+
+        Timer{
+            id:scroll_stop_timer
+            interval: 500
+            onTriggered: {
+                scroll_run_timer.stop()
+                scroll_run_timer.interval = 10
+            }
+        }
+
+        Timer{
+            id:scroll_start_timer
+            interval: 20
+            onTriggered: {
+                scroll_run_timer.restart()
+                scroll_stop_timer.restart()
             }
         }
     }
