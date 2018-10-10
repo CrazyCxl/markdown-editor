@@ -21,14 +21,18 @@ ScrollView {
         font.pixelSize: 15
         font.family: "Microsoft YaHei UI"
         Component.onCompleted: {
-            utils.textAppendStyleSheet(markdown_text.textDocument,":/3rdparty/markdown.css")
+//            utils.textAppendStyleSheet(markdown_text.textDocument,":/3rdparty/markdown.css")
         }
     }
 
     onTextChanged: {
-        var md = MarkdownIt.markdownit();
+        //var md = MarkdownIt.markdownit();
+        var md = MarkdownIt.markdownit({
+          html: true,
+          linkify: true
+        });
         var mdHtml = md.render(text);
-        markdown_text.text = mdHtml;
+        markdown_text.text ="<body class=\"markdown\">"+ mdHtml+"</body>";
     }
 }
 

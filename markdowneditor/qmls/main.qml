@@ -28,8 +28,23 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+    SubTree{
+        id:file_view
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        fileMode:fileModel
+        enableChangeDir: true
+        width:200
+    }
+
     MarkdownEditor{
         id:editor
+        anchors.top: parent.top
+        anchors.left: file_view.right
+        anchors.right: drog_line.left
+        anchors.bottom: parent.bottom
+        text:utils.readFile(file_view.selectPath)
     }
 
     ScrollBar{

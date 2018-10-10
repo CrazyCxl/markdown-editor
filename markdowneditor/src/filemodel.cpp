@@ -1,8 +1,38 @@
 #include "filemodel.h"
+#include "utils.h"
 
-FileModel::FileModel(QWidget *parent) : QFileSystemModel(parent)
+#include <QUrl>
+#include <QDateTime>
+#include <QDir>
+#include <QDebug>
+#include <QVariant>
+
+FileModel::FileModel(QObject *parent) : QFileSystemModel(parent)
 {
+    setDirPath( Utils::getSettingsValue(VARIABLE_SETTINGS_GROUP,"selectDir",
+                                        QVariant::fromValue(QDir::currentPath())).toString() );
+    connect(this,&FileModel::rootPathChanged,[this](QString){
+        emit dirPathChanged();
+    });
+}
 
+FileModel::~FileModel()
+{
+    Utils::setSettingsValue(VARIABLE_SETTINGS_GROUP,"selectDir",QVariant::fromValue(getDirPath()));
+}
+
+void FileModel::setDirPath(const QString &new_path)
+{
+    qInfo()<<"set dir path "<<new_path;
+    const QString filter = "file:///";
+
+    QString path = new_path;
+    if(new_path.startsWith(filter)){
+        path = path.remove(0,filter.length());
+    }
+
+    setRootPath(path);
+    emit rootIndexChanged();
 }
 
 QVariant FileModel::data(const QModelIndex &index, int role) const
@@ -10,13 +40,22 @@ QVariant FileModel::data(const QModelIndex &index, int role) const
     if (index.isValid() && role >= SizeRole) {
         switch (role) {
         case SizeRole:
-//            return QVariant(sizeString(fileInfo(index)));
-        case DisplayableFilePermissionsRole:
-//            return QVariant(permissionString(fileInfo(index)));
+            return QVariant(sizeString(fileInfo(index)));
         case LastModifiedRole:
-//            return QVariant(fileInfo(index).lastModified().toString(Qt::SystemLocaleShortDate));
+            return QVariant(fileInfo(index).lastModified().toString(Qt::SystemLocaleShortDate));
         case UrlStringRole:
-//            return QVariant(QUrl::fromLocalFile(filePath(index)).toString());
+            return QVariant(QUrl::fromLocalFile(filePath(index)).toString());
+        case DirStringRole:{
+            QString dir_str;
+
+            if(isDir(index)){
+                dir_str = filePath(index);
+            }else{
+                dir_str = fileInfo(index).absoluteDir().absolutePath();
+            }
+
+            return QVariant(QUrl::fromLocalFile(dir_str).toString());
+        }
         default:
             break;
         }
@@ -24,12 +63,16 @@ QVariant FileModel::data(const QModelIndex &index, int role) const
     return QFileSystemModel::data(index, role);
 }
 
-QHash<int, QByteArray> FileModel::roleNames() const
+QString FileModel::sizeString(const QFileInfo &fi)
 {
-     QHash<int, QByteArray> result = QFileSystemModel::roleNames();
-     result.insert(SizeRole, QByteArrayLiteral("size"));
-     result.insert(DisplayableFilePermissionsRole, QByteArrayLiteral("displayableFilePermissions"));
-     result.insert(LastModifiedRole, QByteArrayLiteral("lastModified"));
-     return result;
+    if (!fi.isFile())
+        return QString();
+    const qint64 size = fi.size();
+    if (size > 1024 * 1024 * 1024)
+        return QString::number(size / (1024 * 1024 *1024)) + 'G';
+    if (size > 1024 * 1024)
+        return QString::number(size / (1024 * 1024)) + 'M';
+    if (size > 1024)
+        return QString::number(size / 1024) +'K';
+    return QString::number(size)+ 'B';
 }
-

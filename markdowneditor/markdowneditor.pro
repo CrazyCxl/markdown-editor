@@ -56,16 +56,6 @@ CONFIG(debug, debug|release){
     win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qminimald.dll
     win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qoffscreend.dll
     win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qwindowsd.dll
-
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Cored.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Guid.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Networkd.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Quickd.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Widgetsd.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5WebEngined.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5WebEngineCored.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Qmld.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5WebChanneld.dll)
 }
 
 CONFIG(release, debug|release){
@@ -83,16 +73,6 @@ CONFIG(release, debug|release){
     win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qminimal.dll
     win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qoffscreen.dll
     win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qwindows.dll
-
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Core.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Gui.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Network.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Quick.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Widgets.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5WebEngine.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5WebEngineCore.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5Qml.dll)
-    CopyToDestDir($$[QT_HOST_BINS]/Qt5WebChannel.dll)
 }
 
 win32 {
