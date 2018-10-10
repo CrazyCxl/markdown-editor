@@ -1,7 +1,5 @@
 ﻿import QtQuick 2.2
 import QtQuick.Controls 2.2
-import QtWebChannel 1.0
-import QtWebEngine 1.1
 import QtQml 2.2
 import QtWebEngine 1.6
 
@@ -21,7 +19,7 @@ ScrollView {
         font.pixelSize: 15
         font.family: "Microsoft YaHei UI"
         Component.onCompleted: {
-//            utils.textAppendStyleSheet(markdown_text.textDocument,":/3rdparty/markdown.css")
+            utils.textAppendStyleSheet(markdown_text.textDocument,":/3rdparty/simple-markdown.css")
         }
     }
 

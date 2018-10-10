@@ -6,5 +6,6 @@
         <file>default.md</file>
         <file>3rdparty/markdown.css</file>
         <file>markdown-it.js</file>
+        <file>3rdparty/simple-markdown.css</file>
     </qresource>
 </RCC>
