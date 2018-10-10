@@ -1,4 +1,5 @@
 ﻿#include "document.h"
+#include "utils.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -22,6 +23,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     qmlRegisterType<Document>("cxl.normal", 1, 0, "Document");
+    qmlRegisterType<Utils>("cxl.normal", 1, 0, "Utils");
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

@@ -5,5 +5,6 @@
         <file>3rdparty/marked.min.js</file>
         <file>default.md</file>
         <file>3rdparty/markdown.css</file>
+        <file>markdown-it.js</file>
     </qresource>
 </RCC>

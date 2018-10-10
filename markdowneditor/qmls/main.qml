@@ -6,6 +6,7 @@ import QtQuick.Window 2.1
 import QtQuick.Controls.Styles 1.4
 
 import "./custom"
+import cxl.normal 1.0
 
 ApplicationWindow {
     id:root
@@ -17,6 +18,10 @@ ApplicationWindow {
     color:"#efefef"
 //    flags: Qt.FramelessWindowHint | Qt.Window
     property int stepSize: 15
+
+    Utils{
+        id:utils
+    }
 
     MouseArea{
         id:root_area

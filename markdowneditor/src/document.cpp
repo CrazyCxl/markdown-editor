@@ -1,5 +1,6 @@
 #include "document.h"
 #include <QFile>
+#include <QDebug>
 
 Document::Document(QObject *parent)
     :QObject(parent)
