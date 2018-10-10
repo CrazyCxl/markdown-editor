@@ -6,11 +6,13 @@ QT += webenginewidgets webchannel qml quick webengine
 CONFIG += c++11
 
 HEADERS += \
-    document.h
+    document.h \
+    filemodel.h
 
 SOURCES = \
     main.cpp \
-    document.cpp
+    document.cpp \
+    filemodel.cpp
 
 RESOURCES = \
     resources/markdowneditor.qrc \

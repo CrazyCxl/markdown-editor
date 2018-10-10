@@ -58,14 +58,6 @@ ApplicationWindow {
         text:editor.text
     }
 
-//    TitleBar{
-//        id:title_bar
-//        anchors.left: parent.left
-//        anchors.right: parent.right
-//        anchors.margins: root.stepSize
-//        anchors.topMargin: root.stepSize/2
-//    }
-
     Component.onCompleted: {
 
     }

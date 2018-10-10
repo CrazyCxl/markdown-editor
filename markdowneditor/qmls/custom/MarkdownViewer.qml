@@ -11,14 +11,13 @@ import cxl.normal 1.0
 Flickable {
     id: flick
     property string text
-//    boundsBehavior: Flickable.StopAtBounds
+    boundsBehavior: Flickable.StopAtBounds
     ScrollBar.vertical: scroller
-    onContentHeightChanged: console.log("onContentHeightChanged "+contentHeight)
     WebEngineView{
         id:web_view
         url: "qrc:/index.html"
         anchors.fill: parent
-        settings.showScrollBars:false
+        //settings.showScrollBars:false
         webChannel:WebChannel{
             registeredObjects:[m_content]
         }

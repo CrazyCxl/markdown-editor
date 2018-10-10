@@ -3,8 +3,7 @@
         <file>main.qml</file>
         <file>custom/DragLine.qml</file>
         <file>custom/MarkdownViewer.qml</file>
-        <file>custom/TitleBar.qml</file>
-        <file>custom/TristateBtn.qml</file>
         <file>custom/MarkdownEditor.qml</file>
+        <file>custom/SubTree.qml</file>
     </qresource>
 </RCC>
