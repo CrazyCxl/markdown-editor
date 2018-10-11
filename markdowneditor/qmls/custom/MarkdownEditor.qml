@@ -12,6 +12,8 @@ Flickable{
     TextArea.flickable:  TextArea{
         id:text_area
         text: editor.text
+        font.pixelSize: 15
+        font.family: "Microsoft YaHei UI"
         onTextChanged: {
             if(editor.text !== text_area.text){
                 editor.text = text_area.text

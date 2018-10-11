@@ -2,7 +2,7 @@ TEMPLATE = app
 DESTDIR = $$PWD/bin
 PROJECT_DIR = $$[DESTDIR]
 
-QT += webenginewidgets webchannel qml quick webengine
+QT += webenginewidgets qml quick
 CONFIG += c++11
 
 HEADERS += \

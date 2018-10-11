@@ -6,12 +6,13 @@ import QtWebEngine 1.6
 import cxl.normal 1.0
 import "../markdown-it.js" as MarkdownIt
 
-ScrollView {
+Flickable {
     id: flick
     property string text
     //boundsBehavior: Flickable.StopAtBounds
     ScrollBar.vertical: scroller
-    TextArea{
+    flickableDirection :Flickable.VerticalFlick
+    TextArea.flickable:TextArea{
         id:markdown_text
         readOnly: true
         textFormat: TextEdit.RichText
