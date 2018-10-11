@@ -8,22 +8,15 @@ Flickable{
     anchors.topMargin: root.stepSize*3
     boundsBehavior: Flickable.StopAtBounds
     ScrollBar.vertical: scroller
-    property string text:text_area.text
+    property string text
     TextArea.flickable:  TextArea{
         id:text_area
         text: editor.text
-//        Component.onCompleted: {
-//            var xhr = new XMLHttpRequest;
-//            xhr.open("GET", "/default.md");
-//            xhr.onreadystatechange = function() {
-//                if (xhr.readyState === XMLHttpRequest.DONE) {
-//                    var response =
-//                    // use file contents as required
-//                    text_area.text = xhr.responseText
-//                }
-//            };
-//            xhr.send();
-//        }
+        onTextChanged: {
+            if(editor.text !== text_area.text){
+                editor.text = text_area.text
+            }
+        }
     }
 }
 

@@ -36,6 +36,9 @@ ApplicationWindow {
         fileMode:fileModel
         enableChangeDir: true
         width:200
+        onSelectPathChanged: {
+            editor.text = utils.readFile(file_view.selectPath)
+        }
     }
 
     MarkdownEditor{
@@ -44,7 +47,7 @@ ApplicationWindow {
         anchors.left: file_view.right
         anchors.right: drog_line.left
         anchors.bottom: parent.bottom
-        text:utils.readFile(file_view.selectPath)
+        onTextChanged: viewer.text = editor.text
     }
 
     ScrollBar{
@@ -74,8 +77,6 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: root.stepSize*3
         anchors.topMargin: root.stepSize*3
-
-        text:editor.text
     }
 
     Component.onCompleted: {

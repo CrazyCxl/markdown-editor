@@ -1,7 +1,7 @@
 import QtQuick 2.4
 
 Rectangle {
-    x: (parent.width-width)/2
+    x: (parent.width-width+file_view.width)/2
     width: 2
     height: parent.height
 
