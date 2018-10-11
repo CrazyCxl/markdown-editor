@@ -4,13 +4,14 @@ import QtQuick.Controls.Styles 1.4
 
 Flickable{
     anchors.leftMargin: root.stepSize*3
-    anchors.bottomMargin: root.stepSize*3
-    anchors.topMargin: root.stepSize*3
+//    anchors.bottomMargin: root.stepSize*3
+//    anchors.topMargin: root.stepSize*3
     boundsBehavior: Flickable.StopAtBounds
     ScrollBar.vertical: scroller
     property string text
     TextArea.flickable:  TextArea{
         id:text_area
+        selectByMouse: true
         text: editor.text
         font.pixelSize: 15
         font.family: "Microsoft YaHei UI"

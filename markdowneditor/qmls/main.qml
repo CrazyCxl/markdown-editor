@@ -75,8 +75,8 @@ ApplicationWindow {
         anchors.left: drog_line.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: root.stepSize*3
-        anchors.topMargin: root.stepSize*3
+//        anchors.bottomMargin: root.stepSize*3
+//        anchors.topMargin: root.stepSize*3
     }
 
     Component.onCompleted: {

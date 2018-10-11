@@ -17,6 +17,7 @@ Flickable {
         readOnly: true
         textFormat: TextEdit.RichText
         wrapMode: TextEdit.WordWrap
+        selectByMouse: true
         font.pixelSize: 15
         font.family: "Microsoft YaHei UI"
         Component.onCompleted: {
