@@ -4,7 +4,8 @@ import QtQml 2.2
 import QtWebEngine 1.6
 
 import cxl.normal 1.0
-import "../markdown-it.js" as MarkdownIt
+import "../markdown-it/markdown-it.js" as MarkdownIt
+import "../markdown-it/markdown-it-footnote.js" as MarkdownItFootNote
 
 Flickable {
     id: flick
@@ -30,7 +31,7 @@ Flickable {
         var md = MarkdownIt.markdownit({
           html: true,
           linkify: true
-        });
+        }).use(MarkdownItFootNote.markdownitFootnote);
         var mdHtml = md.render(text);
         markdown_text.text ="<body class=\"markdown\">"+ mdHtml+"</body>";
     }
