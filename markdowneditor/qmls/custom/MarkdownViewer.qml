@@ -1,39 +1,118 @@
 ﻿import QtQuick 2.2
 import QtQuick.Controls 2.2
+import QtWebChannel 1.0
+import QtWebEngine 1.1
 import QtQml 2.2
 import QtWebEngine 1.6
 
 import cxl.normal 1.0
-import "../markdown-it/markdown-it.js" as MarkdownIt
-import "../markdown-it/markdown-it-footnote.js" as MarkdownItFootNote
 
-Flickable {
+
+Item {
     id: flick
     property string text
-    //boundsBehavior: Flickable.StopAtBounds
-    ScrollBar.vertical: scroller
-    flickableDirection :Flickable.VerticalFlick
-    TextArea.flickable:TextArea{
-        id:markdown_text
-        readOnly: true
-        textFormat: TextEdit.RichText
-        wrapMode: TextEdit.WordWrap
-        selectByMouse: true
-        font.pixelSize: 15
-        font.family: "Microsoft YaHei UI"
-        Component.onCompleted: {
-            utils.textAppendStyleSheet(markdown_text.textDocument,":/3rdparty/simple-markdown.css")
+    WebEngineView{
+        id:web_view
+        url: "qrc:/index.html"
+        anchors.fill: parent
+        settings.showScrollBars:false
+        focus: true
+        webChannel:WebChannel{
+            registeredObjects:[m_content]
+        }
+
+        Document{
+            id:m_content
+            text:viewer.text
+            WebChannel.id:"content"
+        }
+
+//        onLoadingChanged: {
+//            if (web_view.loadProgress == 100) {
+//                web_view.runJavaScript(
+//                    "document.documentElement.scrollHeight;",
+//                    function (i_actualPageHeight) {
+//                        flick.contentHeight = Math.max (
+//                            i_actualPageHeight, flick.height);
+//                    })
+//                web_view.runJavaScript(
+//                    "document.documentElement.scrollWidth;",
+//                    function (i_actualPageWidth) {
+//                        flick.contentWidth = Math.max (
+//                            i_actualPageWidth, flick.width);
+//                    })
+//            }
+//        }
+    }
+
+    MouseArea{
+        id:view_area
+        width: web_view.width
+        height: web_view.height
+        property bool callScrollUp: false
+        property double  scrollEnhance: 0
+        onWheel: {
+            scroll_run_timer.stop()
+            scroll_stop_timer.stop()
+            scroll_start_timer.stop()
+            if(wheel.angleDelta.y > 0){
+                callScrollUp = false
+            }else{
+                callScrollUp = true
+            }
+            scroller.stepSize = 0.02
+            updateScroller()
+            scroll_start_timer.start()
+        }
+
+        function updateScroller(){
+            if(callScrollUp){
+                scroller.increase()
+            }else{
+                scroller.decrease()
+            }
+        }
+
+        Timer{
+            id:scroll_run_timer
+            interval: 10
+            repeat: true
+            onTriggered: {
+                view_area.updateScroller()
+                scroll_run_timer.interval++
+                scroller.stepSize -= scroller.stepSize/5
+            }
+        }
+
+        Timer{
+            id:scroll_stop_timer
+            interval: 500
+            onTriggered: {
+                scroll_run_timer.stop()
+                scroll_run_timer.interval = 10
+            }
+        }
+
+        Timer{
+            id:scroll_start_timer
+            interval: 20
+            onTriggered: {
+                scroll_run_timer.restart()
+                scroll_stop_timer.restart()
+            }
         }
     }
 
-    onTextChanged: {
-        //var md = MarkdownIt.markdownit();
-        var md = MarkdownIt.markdownit({
-          html: true,
-          linkify: true
-        }).use(MarkdownItFootNote.markdownitFootnote);
-        var mdHtml = md.render(text);
-        markdown_text.text ="<body class=\"markdown\">"+ mdHtml+"</body>";
+    Connections {
+        target:scroller
+        onPositionChanged:  {
+            web_view.runJavaScript(
+                "document.documentElement.scrollHeight",
+                function (i_actualPageWidth) {
+                        view_area.scrollEnhance  = editor.contentY/(editor.contentHeight-editor.height) * (i_actualPageWidth-web_view.height)
+                })
+             web_view.runJavaScript("window.scrollTo(0,"+view_area.scrollEnhance+")")
+        }
     }
 }
 
