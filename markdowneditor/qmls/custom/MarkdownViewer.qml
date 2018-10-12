@@ -26,23 +26,6 @@ Item {
             text:viewer.text
             WebChannel.id:"content"
         }
-
-//        onLoadingChanged: {
-//            if (web_view.loadProgress == 100) {
-//                web_view.runJavaScript(
-//                    "document.documentElement.scrollHeight;",
-//                    function (i_actualPageHeight) {
-//                        flick.contentHeight = Math.max (
-//                            i_actualPageHeight, flick.height);
-//                    })
-//                web_view.runJavaScript(
-//                    "document.documentElement.scrollWidth;",
-//                    function (i_actualPageWidth) {
-//                        flick.contentWidth = Math.max (
-//                            i_actualPageWidth, flick.width);
-//                    })
-//            }
-//        }
     }
 
     MouseArea{
@@ -109,9 +92,10 @@ Item {
             web_view.runJavaScript(
                 "document.documentElement.scrollHeight",
                 function (i_actualPageWidth) {
-                        view_area.scrollEnhance  = editor.contentY/(editor.contentHeight-editor.height) * (i_actualPageWidth-web_view.height)
+                        view_area.scrollEnhance  = editor.contentY/(editor.contentHeight-editor.height) *
+                                                                        (i_actualPageWidth-web_view.height)
                 })
-             web_view.runJavaScript("window.scrollTo(0,"+view_area.scrollEnhance+")")
+            web_view.runJavaScript("window.scrollTo(0,"+view_area.scrollEnhance+")")
         }
     }
 }
