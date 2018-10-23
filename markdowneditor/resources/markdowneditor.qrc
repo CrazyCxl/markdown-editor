@@ -8,5 +8,7 @@
         <file>3rdparty/simple-markdown.css</file>
         <file>markdown-it/markdown-it.js</file>
         <file>markdown-it/markdown-it-footnote.js</file>
+        <file>markdown-it/markdown-it-math.js</file>
+        <file>markdown-it/mathjax.css</file>
     </qresource>
 </RCC>
