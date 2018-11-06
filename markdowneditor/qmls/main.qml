@@ -38,12 +38,26 @@ ApplicationWindow {
         width:200
         onSelectPathChanged: {
             editor.text = utils.readFile(file_view.selectPath)
+            navigation_bar.touchItem(file_view.selectTitle,file_view.selectPath,editor.text)
+        }
+    }
+
+    TitleNavigationBar{
+        id:navigation_bar
+        anchors.top: file_view.top
+        anchors.left: file_view.right
+        anchors.right: drog_line.left
+        height: 30
+
+        onTitleChecked: {
+            editor.text = title_data.doc
+            navigation_bar.touchItem(title_data.title,title_data.path,title_data.doc)
         }
     }
 
     MarkdownEditor{
         id:editor
-        anchors.top: parent.top
+        anchors.top: navigation_bar.bottom
         anchors.left: file_view.right
         anchors.right: drog_line.left
         anchors.bottom: parent.bottom

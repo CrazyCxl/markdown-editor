@@ -56,6 +56,12 @@ QVariant FileModel::data(const QModelIndex &index, int role) const
 
             return QVariant(QUrl::fromLocalFile(dir_str).toString());
         }
+        case BaseNameStringRole:{
+            QString base_name = fileInfo(index).baseName();
+            return QVariant(base_name);
+        }
+        case IsDirRole:
+            return QVariant(fileInfo(index).isDir());
         default:
             break;
         }
@@ -76,3 +82,4 @@ QString FileModel::sizeString(const QFileInfo &fi)
         return QString::number(size / 1024) +'K';
     return QString::number(size)+ 'B';
 }
+

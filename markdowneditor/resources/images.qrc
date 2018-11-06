@@ -6,5 +6,6 @@
         <file>images/svg/delete.svg</file>
         <file>images/svg/max.svg</file>
         <file>images/svg/min.svg</file>
+        <file>images/svg/point.svg</file>
     </qresource>
 </RCC>

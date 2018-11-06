@@ -22,13 +22,15 @@ class FileModel : public QFileSystemModel
 
 public:
     explicit FileModel(QObject *parent = nullptr);
-    ~FileModel();
+    ~FileModel() Q_DECL_OVERRIDE;
 
     enum Roles  {
         SizeRole = Qt::UserRole + 4,
         LastModifiedRole = Qt::UserRole + 6,
         UrlStringRole = Qt::UserRole + 7,
-        DirStringRole
+        DirStringRole,
+        BaseNameStringRole,
+        IsDirRole
     };
 
     Q_ENUM(Roles)
@@ -59,7 +61,6 @@ Q_SIGNALS:
     void dirPathChanged();
     void rootIndexChanged();
 
-public slots:
 };
 
 #endif // FILEMODEL_H

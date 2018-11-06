@@ -7,6 +7,7 @@ import cxl.normal 1.0
 
 Item {
     property string selectPath
+    property string selectTitle
     property string dirPath
     property var fileMode
     property bool enableChangeDir: false
@@ -65,7 +66,10 @@ Item {
         }
 
         onActivated : {
-            selectPath = fileMode.data(index, FileModel.UrlStringRole)
+            if(!fileMode.data(index, FileModel.IsDirRole)){
+                selectTitle = fileMode.data(index, FileModel.BaseNameStringRole)
+                selectPath = fileMode.data(index, FileModel.UrlStringRole)
+            }
         }
     }
 
