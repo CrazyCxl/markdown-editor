@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.10
 
 Rectangle {
     color:"#ffffff"
@@ -6,13 +6,26 @@ Rectangle {
 
     signal titleChecked(var title_data)
 
+    function setCurrentItemUnsaved(status){
+        if(titles_list.currentIndex >= 0){
+            titles_mode.setProperty(titles_list.currentIndex,"unsaved",status)
+        }
+    }
+
+    function isCurrentItemUnsaved(){
+        if(titles_list.currentIndex >= 0){
+            return titles_mode.get(titles_list.currentIndex).unsaved;
+        }
+
+        return false;
+    }
+
     function touchItem(title,path,doc){
         var i = titles_mode.getIndexByPath(path)
         console.log("touch title:"+title+" path:"+path+" i:"+i)
         if(i === -1){
             if((parent.width - 60)/(titles_mode.count+1) > 50 ){
                 var js = {"title":title,"path":path,"unsaved":false,"doc":doc}
-                var msg = {"model":titles_mode,"data":js}
                 titles_mode.append(js)
                 titles_list.currentIndex = titles_mode.count-1
             }else{
@@ -31,6 +44,7 @@ Rectangle {
         orientation: ListView.Horizontal
         width: itemWidth*titles_mode.count
         model: titles_mode
+
         property int itemWidth: {
             var h = 50;
             if(titles_mode.count > 0){
@@ -65,6 +79,15 @@ Rectangle {
                     height: parent.radius
                 }
 
+                Image{
+                    anchors.left: parent.left
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: "qrc:/item/images/svg/point.svg"
+                    width: 20
+                    height: 20
+                    visible: unsaved
+                }
+
                 Text {
                     text: title
                     anchors.centerIn: parent
@@ -73,7 +96,7 @@ Rectangle {
                 MouseArea{
                     id:item_area
                     anchors.fill: parent
-                    onClicked:titleChecked(titles_mode.get(index))
+                    onClicked:titles_list.currentIndex = index
                     hoverEnabled: true
                 }
 
@@ -102,20 +125,22 @@ Rectangle {
                         onClicked: titles_mode.remove(index,1)
                     }
                 }
-
             }
+        }
 
+        onCurrentIndexChanged: {
+            if(currentIndex >= 0){
+                titleChecked(titles_mode.get(currentIndex))
+            }else{
+                var js = {"title":null,"path":null,"unsaved":false,"doc":null}
+                titleChecked(js)
+            }
         }
     }
 
 
     ListModel{
         id:titles_mode
-//        ListElement {
-//            title: "test"
-//            path:"test"
-//            doc:"test"
-//        }
         function getIndexByPath(path){
             for(var i = 0;i < count;i++){
                 if(path === get(i).path ){

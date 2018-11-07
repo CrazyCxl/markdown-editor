@@ -25,9 +25,11 @@ public:
     static QString getSettingsFilePath();
     static QVariant getSettingsValue(const QString &group, const QString &key,const QVariant &defalutValue);
     static void     setSettingsValue(const QString &group, const QString &key,const QVariant &value);
+    static QString filterPath(const QString &path_t);
 
     Q_INVOKABLE QString readFile(const QString &file_dir);
     Q_INVOKABLE void textAppendStyleSheet(QQuickTextDocument* qd,const QString &style_url);
+    Q_INVOKABLE bool saveDocToFile(const QString &doc, const QString &file_path);
 
 signals:
 

@@ -58,15 +58,21 @@ void Utils::setSettingsValue(const QString &group, const QString &key, const QVa
     }
 }
 
-QString Utils::readFile(const QString &file_dir)
+QString Utils::filterPath(const QString &path_t)
 {
     const QString filter = "file:///";
 
-    QString path = file_dir;
-    if(file_dir.startsWith(filter)){
-        path = path.remove(0,filter.length());
+    QString path_r = path_t;
+    if(path_t.startsWith(filter)){
+        path_r = path_r.remove(0,filter.length());
     }
 
+    return path_r;
+}
+
+QString Utils::readFile(const QString &file_dir)
+{
+    QString path = filterPath(file_dir);
     QFile file(path);
     if(!file.exists()){
         qWarning()<<"File not exist! "<<path;
@@ -77,6 +83,9 @@ QString Utils::readFile(const QString &file_dir)
         return "";
     }
     auto content = file.readAll();
+
+    file.close();
+
     return QString(content);
 }
 
@@ -85,4 +94,26 @@ void Utils::textAppendStyleSheet(QQuickTextDocument *qd, const QString &style_ur
     qInfo()<<"textAppendStyleSheet "<<style_url;
     auto td = qd->textDocument();
     td->setDefaultStyleSheet(readFile(style_url));
+}
+
+bool Utils::saveDocToFile(const QString &doc, const QString &file_path)
+{
+    bool ret = false;
+    QFile file(filterPath(file_path));
+    if(file.exists()){
+        if(file.open(QFile::WriteOnly)){
+            if(file.write(doc.toLatin1()) > 0){
+                ret = true;
+            }else{
+                qCritical()<<"save file but write to file failed!";
+            }
+            file.close();
+        }else{
+            qCritical()<<"save file but open failed";
+        }
+    }else{
+        qCritical()<<"save file but file is not exit!";
+    }
+
+    return ret;
 }

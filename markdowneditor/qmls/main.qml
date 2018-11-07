@@ -37,8 +37,7 @@ ApplicationWindow {
         enableChangeDir: true
         width:200
         onSelectPathChanged: {
-            editor.text = utils.readFile(file_view.selectPath)
-            navigation_bar.touchItem(file_view.selectTitle,file_view.selectPath,editor.text)
+            navigation_bar.touchItem(file_view.selectTitle,file_view.selectPath,utils.readFile(file_view.selectPath))
         }
     }
 
@@ -50,8 +49,12 @@ ApplicationWindow {
         height: 30
 
         onTitleChecked: {
-            editor.text = title_data.doc
-            navigation_bar.touchItem(title_data.title,title_data.path,title_data.doc)
+            if(title_data.path !== null){
+                editor.text = title_data.doc
+                editor.path = title_data.path
+            }else{
+                editor.text = ""
+            }
         }
     }
 
@@ -61,7 +64,9 @@ ApplicationWindow {
         anchors.left: file_view.right
         anchors.right: drog_line.left
         anchors.bottom: parent.bottom
-        onTextChanged: viewer.text = editor.text
+        onTextChanged: {
+            viewer.text = editor.text
+        }
     }
 
     ScrollBar{
