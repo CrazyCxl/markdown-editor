@@ -101,7 +101,7 @@ bool Utils::saveDocToFile(const QString &doc, const QString &file_path)
     bool ret = false;
     QFile file(filterPath(file_path));
     if(file.exists()){
-        if(file.open(QFile::WriteOnly)){
+        if(file.open(QFile::WriteOnly|QFile::Text)){
             if(file.write(doc.toLatin1()) > 0){
                 ret = true;
             }else{

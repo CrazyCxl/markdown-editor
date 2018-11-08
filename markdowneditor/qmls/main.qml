@@ -15,6 +15,7 @@ ApplicationWindow {
     height: 820
     minimumWidth: 640
     minimumHeight: 480
+    title: " "
     color:"#efefef"
 //    flags: Qt.FramelessWindowHint | Qt.Window
     property int stepSize: 15
@@ -36,8 +37,9 @@ ApplicationWindow {
         fileMode:fileModel
         enableChangeDir: true
         width:200
-        onSelectPathChanged: {
-            navigation_bar.touchItem(file_view.selectTitle,file_view.selectPath,utils.readFile(file_view.selectPath))
+
+        onPathSelected: {
+            navigation_bar.touchItem(file_view.selectTitle,path,utils.readFile(path))
         }
     }
 
@@ -96,9 +98,5 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
 //        anchors.bottomMargin: root.stepSize*3
 //        anchors.topMargin: root.stepSize*3
-    }
-
-    Component.onCompleted: {
-
     }
 }

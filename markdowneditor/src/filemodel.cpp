@@ -58,6 +58,9 @@ QVariant FileModel::data(const QModelIndex &index, int role) const
         }
         case BaseNameStringRole:{
             QString base_name = fileInfo(index).baseName();
+            if(base_name.isEmpty()){
+                base_name = fileInfo(index).fileName();
+            }
             return QVariant(base_name);
         }
         case IsDirRole:

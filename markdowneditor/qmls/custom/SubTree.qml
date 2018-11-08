@@ -6,27 +6,33 @@ import QtQuick.Dialogs 1.0
 import cxl.normal 1.0
 
 Item {
-    property string selectPath
     property string selectTitle
     property string dirPath
     property var fileMode
     property bool enableChangeDir: false
-    Item{
+
+    signal pathSelected(var path)
+
+    Rectangle{
         id:top_item
         anchors.top: parent.top
         width: parent.width
         height: 30
-        TextField {
+        color:"#ffffff"
+        Text {
             id:text_field
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            width: parent.width
+            anchors.centerIn: parent
+            width: parent.width-20
             text: fileMode.dirPath
+            elide: Text.ElideMiddle
+            color:top_area.containsMouse?"#202020":"#000000"
         }
 
         MouseArea{
+            id:top_area
             anchors.fill: parent
-            onDoubleClicked: {
+            hoverEnabled: true
+            onClicked: {
                 if(enableChangeDir){
                     fileDialog.visible = true
                 }
@@ -65,10 +71,10 @@ Item {
             role: "fileName"
         }
 
-        onActivated : {
+        onDoubleClicked: {
             if(!fileMode.data(index, FileModel.IsDirRole)){
                 selectTitle = fileMode.data(index, FileModel.BaseNameStringRole)
-                selectPath = fileMode.data(index, FileModel.UrlStringRole)
+                pathSelected(fileMode.data(index, FileModel.UrlStringRole))
             }
         }
     }
