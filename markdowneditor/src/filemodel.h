@@ -30,7 +30,8 @@ public:
         UrlStringRole = Qt::UserRole + 7,
         DirStringRole,
         BaseNameStringRole,
-        IsDirRole
+        IsDirRole,
+        IsMarkdownFileRole
     };
 
     Q_ENUM(Roles)
@@ -48,6 +49,7 @@ public:
          QHash<int, QByteArray> result = QFileSystemModel::roleNames();
          result.insert(SizeRole, QByteArrayLiteral("size"));
          result.insert(LastModifiedRole, QByteArrayLiteral("lastModified"));
+         result.insert(IsMarkdownFileRole, QByteArrayLiteral("isMarkdownFile"));
          return result;
     }
 

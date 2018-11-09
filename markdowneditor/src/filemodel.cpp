@@ -65,6 +65,8 @@ QVariant FileModel::data(const QModelIndex &index, int role) const
         }
         case IsDirRole:
             return QVariant(fileInfo(index).isDir());
+        case IsMarkdownFileRole:
+            return QVariant(fileInfo(index).suffix() == "md");
         default:
             break;
         }

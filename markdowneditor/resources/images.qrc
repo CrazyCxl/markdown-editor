@@ -7,5 +7,11 @@
         <file>images/svg/max.svg</file>
         <file>images/svg/min.svg</file>
         <file>images/svg/point.svg</file>
+        <file>images/svg/dir.svg</file>
+        <file>images/svg/dir_open.svg</file>
+        <file>images/svg/doc.svg</file>
+        <file>images/svg/doc_null.svg</file>
+        <file>images/svg/triangle_down.svg</file>
+        <file>images/svg/triangle_right.svg</file>
     </qresource>
 </RCC>
