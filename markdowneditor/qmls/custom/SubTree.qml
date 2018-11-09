@@ -107,6 +107,18 @@ Item {
                 height: 25
                 color: styleData.selected?"#efefef":"#ffffff"
             }
+
+            handle: Rectangle {
+                implicitWidth: 10
+                color: styleData.hovered?"#c0c0c0":"#e0e0e0"
+            }
+
+            scrollBarBackground: Rectangle {
+                implicitWidth: 10
+                color: "#f5f5f5"
+            }
+            decrementControl: null
+            incrementControl: null
         }
 
         onDoubleClicked: {
