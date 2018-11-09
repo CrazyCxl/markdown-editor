@@ -50,6 +50,9 @@ Item {
 
         function updateScroller(){
             if(callScrollUp){
+                if(web_view.height > editor.contentHeight){
+                    editor.contentHeight = web_view.height +100
+                }
                 scroller.increase()
             }else{
                 scroller.decrease()

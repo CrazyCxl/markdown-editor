@@ -5,6 +5,12 @@ A qml markdown editor
 
 But not done yet...
 
+# Todo list
+
+- The tip closed
+- User Settings
+- Shortcut key
+
 # Reference
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
 - [Moeditor](https://github.com/Moeditor/Moeditor)
