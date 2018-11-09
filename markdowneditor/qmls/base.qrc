@@ -6,5 +6,6 @@
         <file>custom/MarkdownEditor.qml</file>
         <file>custom/SubTree.qml</file>
         <file>custom/TitleNavigationBar.qml</file>
+        <file>custom/SettingsItem.qml</file>
     </qresource>
 </RCC>

@@ -20,13 +20,13 @@ ApplicationWindow {
 //    flags: Qt.FramelessWindowHint | Qt.Window
     property int stepSize: 15
 
-    Utils{
-        id:utils
-    }
-
     MouseArea{
         id:root_area
         anchors.fill: parent
+    }
+
+    Utils{
+        id:utils
     }
 
     SubTree{
@@ -98,5 +98,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
 //        anchors.bottomMargin: root.stepSize*3
 //        anchors.topMargin: root.stepSize*3
+    }
+
+    SettingsItem{
     }
 }

@@ -73,6 +73,7 @@ Item {
         }
 
         style: TreeViewStyle {
+            frame:null
             branchDelegate: Image {
                 width: 14
                 height: width
@@ -89,7 +90,7 @@ Item {
                     height: width
                     source: styleData.hasChildren?
                                 (styleData.isExpanded?"qrc:/item/images/svg/dir_open.svg":"qrc:/item/images/svg/dir.svg"):
-                                (fileMode.data(styleData.index, FileModel.IsMarkdownFileRole)?"qrc:/item/images/svg/doc.svg":
+                                (fileMode.data(styleData.index, FileModel.IsMarkdownFileRole)?"qrc:/item/images/svg/file-markdown.svg":
                                                                                                "qrc:/item/images/svg/doc_null.svg")
                 }
 

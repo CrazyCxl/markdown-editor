@@ -7,7 +7,7 @@ But not done yet...
 
 # Todo list
 
-- The tip closed
+- The tip when closing
 - User Settings
 - Shortcut key
 
