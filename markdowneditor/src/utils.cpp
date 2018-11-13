@@ -102,7 +102,7 @@ bool Utils::saveDocToFile(const QString &doc, const QString &file_path)
     QFile file(filterPath(file_path));
     if(file.exists()){
         if(file.open(QFile::WriteOnly|QFile::Text)){
-            if(file.write(doc.toLatin1()) > 0){
+            if(file.write(doc.toUtf8()) > 0){
                 ret = true;
             }else{
                 qCritical()<<"save file but write to file failed!";
