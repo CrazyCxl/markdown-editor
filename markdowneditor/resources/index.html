@@ -19,6 +19,7 @@
   var updateText = function(text) {
         var md = markdownit({
             html: true,
+            breaks: true,
             linkify: true
         }).use(markdownitFootnote).use(markdownitMath);
         var mdHtml = md.render(text);
