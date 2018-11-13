@@ -46,33 +46,13 @@ defineTest(CopyToDestDir) {
 
 CONFIG(debug, debug|release){
     CONFIG += console
-
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Cored.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Guid.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Networkd.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Sqld.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Widgetsd.dll
-
-    win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qminimald.dll
-    win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qoffscreend.dll
-    win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qwindowsd.dll
+    DESTDIR = $$PWD/output/debug
 }
 
 CONFIG(release, debug|release){
-    TARGET = EapilPCBAInstpectionTool
     CONFIG -= app_bundle
     CONFIG -= console
-#    DEFINES += QT_NO_DEBUG_OUTPUT
-
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Core.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Gui.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Network.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Sql.dll
-    win32:target.files += $$[QT_HOST_BINS]/Qt5Widgets.dll
-
-    win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qminimal.dll
-    win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qoffscreen.dll
-    win32:plugins_platforms.files += $$[QT_INSTALL_PLUGINS]/platforms/qwindows.dll
+    DESTDIR = $$PWD/output/release
 }
 
 win32 {
