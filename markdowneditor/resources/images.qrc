@@ -19,5 +19,6 @@
         <file>images/svg/sets/look.svg</file>
         <file>images/svg/sets/set_hollow.svg</file>
         <file>images/svg/sets/set_solid.svg</file>
+        <file>images/svg/sets/edit_view.svg</file>
     </qresource>
 </RCC>

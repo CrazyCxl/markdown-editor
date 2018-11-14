@@ -6,7 +6,9 @@ import QtQuick.Controls.Styles 1.4
 
 import cxl.normal 1.0
 
-Item {
+Rectangle {
+    color:"#ffffff"
+
     property string selectTitle
     property string dirPath
     property var fileMode
@@ -14,12 +16,18 @@ Item {
 
     signal pathSelected(var path)
 
+    function showChangeDirDialog(){
+        if(enableChangeDir){
+            fileDialog.visible = true
+        }
+    }
+
     Rectangle{
         id:top_item
         anchors.top: parent.top
         width: parent.width
         height: 30
-        color:"#ffffff"
+        visible: false
         Text {
             id:text_field
             anchors.centerIn: parent
@@ -34,16 +42,14 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             onClicked: {
-                if(enableChangeDir){
-                    fileDialog.visible = true
-                }
+                showChangeDirDialog()
             }
         }
 
         FileDialog {
             id: fileDialog
             title: qsTr("Please choose a directory")
-            folder: fileMode.dirPath
+            folder: "file:///" + fileMode.dirPath
             selectFolder:true
             selectMultiple:false
             onAccepted: {

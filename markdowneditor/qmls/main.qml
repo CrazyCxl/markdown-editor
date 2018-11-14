@@ -101,5 +101,6 @@ ApplicationWindow {
     }
 
     SettingsItem{
+        onCallChangeDir: file_view.showChangeDirDialog()
     }
 }

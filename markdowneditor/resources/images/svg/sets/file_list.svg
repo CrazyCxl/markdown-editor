@@ -1,1 +1,45 @@
-<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1541748989880" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2065" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32"><defs><style type="text/css"></style></defs><path d="M811.6 264.1H378.2c-19.8 0-36-16.2-36-36s16.2-36 36-36h433.5c19.8 0 36 16.2 36 36-0.1 19.8-16.3 36-36.1 36zM811.6 522.1H378.2c-19.8 0-36-16.2-36-36s16.2-36 36-36h433.5c19.8 0 36 16.2 36 36-0.1 19.8-16.3 36-36.1 36zM811.6 780.1H378.2c-19.8 0-36-16.2-36-36s16.2-36 36-36h433.5c19.8 0 36 16.2 36 36-0.1 19.8-16.3 36-36.1 36z" p-id="2066" fill="#a4a6a7"></path><path d="M210.2 229m-37.9 0a37.9 37.9 0 1 0 75.8 0 37.9 37.9 0 1 0-75.8 0Z" p-id="2067" fill="#a4a6a7"></path><path d="M210.2 487m-37.9 0a37.9 37.9 0 1 0 75.8 0 37.9 37.9 0 1 0-75.8 0Z" p-id="2068" fill="#a4a6a7"></path><path d="M210.2 745m-37.9 0a37.9 37.9 0 1 0 75.8 0 37.9 37.9 0 1 0-75.8 0Z" p-id="2069" fill="#a4a6a7"></path></svg>
+<svg width="126" height="126" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>Layer 1</title>
+  <defs>
+   <style type="text/css"/>
+  </defs>
+  <defs>
+   <style type="text/css"/>
+  </defs>
+  <defs>
+   <style type="text/css"/>
+  </defs>
+  <defs>
+   <style type="text/css"/>
+  </defs>
+  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+  <g stroke="null" id="svg_50">
+   <g stroke="null" transform="matrix(1.0181745442342403,0,0,0.9388094430522441,5.13605151091848,4.59183882849779) " id="svg_47">
+    <title stroke="null" transform="translate(-5.8571343421936035,0) translate(0,-5.8571343421936035) ">background</title>
+    <rect stroke="null" x="-6.857134" y="-6.857134" width="128" height="128" id="svg_45" fill="#fff"/>
+
+   </g>
+   <g stroke="null" transform="matrix(1.0181745442342403,0,0,0.9388094430522441,5.13605151091848,4.59183882849779) " id="svg_49">
+    <title stroke="null" transform="translate(-5.8571343421936035,0) translate(0,-5.8571343421936035) ">Layer 1</title>
+    <defs stroke="null" transform="translate(-5.8571343421936035,0) translate(0,-5.8571343421936035) ">
+     <style stroke="null" type="text/css"/>
+    </defs>
+    <defs stroke="null" transform="translate(-5.8571343421936035,0) translate(0,-5.8571343421936035) ">
+     <style stroke="null" type="text/css"/>
+    </defs>
+    <defs stroke="null" transform="translate(-5.8571343421936035,0) translate(0,-5.8571343421936035) ">
+     <style stroke="null" type="text/css"/>
+    </defs>
+    <g stroke="null" id="svg_39">
+     <path stroke="null" d="m109.123527,13.440769l-76.292996,0c-3.485467,0 -6.337212,-3.303095 -6.337212,-7.340211s2.851746,-7.340211 6.337212,-7.340211l76.310599,0c3.485467,0 6.337212,3.303095 6.337212,7.340211c-0.017603,4.037116 -2.869349,7.340211 -6.354816,7.340211l0.000001,0zm0,52.604843l-76.292996,0c-3.485467,0 -6.337212,-3.303095 -6.337212,-7.340211s2.851746,-7.340211 6.337212,-7.340211l76.310599,0c3.485467,0 6.337212,3.303095 6.337212,7.340211c-0.017603,4.037116 -2.869349,7.340211 -6.354816,7.340211l0.000001,0zm0,52.604843l-76.292996,0c-3.485467,0 -6.337212,-3.303095 -6.337212,-7.340211s2.851746,-7.340211 6.337212,-7.340211l76.310599,0c3.485467,0 6.337212,3.303095 6.337212,7.340211c-0.017603,4.037116 -2.869349,7.340211 -6.354816,7.340211l0.000001,0z" fill="#a4a6a7" id="svg_43"/>
+     <path stroke="null" d="m3.256873,6.284063m-6.671676,0a6.671676,7.727611 0 1 0 13.343353,0a6.671676,7.727611 0 1 0 -13.343353,0z" fill="#a4a6a7" id="svg_42"/>
+     <path stroke="null" d="m3.256873,58.888906m-6.671676,0a6.671676,7.727611 0 1 0 13.343353,0a6.671676,7.727611 0 1 0 -13.343353,0z" fill="#a4a6a7" id="svg_41"/>
+     <path stroke="null" d="m3.256873,111.493748m-6.671676,0a6.671676,7.727611 0 1 0 13.343353,0a6.671676,7.727611 0 1 0 -13.343353,0z" fill="#a4a6a7" id="svg_40"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

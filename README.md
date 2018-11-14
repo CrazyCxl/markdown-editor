@@ -10,6 +10,7 @@ But not done yet...
 - The tip when closing
 - User Settings
 - Shortcut key
+- Right mouse button menu
 
 # Reference
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)

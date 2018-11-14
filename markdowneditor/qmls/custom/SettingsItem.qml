@@ -1,24 +1,42 @@
-import QtQuick 2.0
+import QtQuick 2.10
 
 Item {
-    property int offset:0
+    id:set_item
     x:0
     y:0
+
+    signal callChangeDir()
+    signal callOnlyEdit()
+    signal callOnlyRead()
+    signal callReadEdit()
+
+    property int offset:{
+        var w = set_hollow.width + list_set.width + edit_set.width+look_set.width+ edit_look_set.width +itemMargin*5
+        if( set_hollow.x+w > root.width){
+            return -w;
+        }
+        return w;
+    }
+
+    property int itemMargin: 10
 
     Image{
         id:set_solid
         width: 30
         height: width
-        x:set_hollow.x + offset
+        x:set_hollow.x
         y:set_hollow.y
         source: "qrc:/item/images/svg/sets/set_solid.svg"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: changeState()
+        }
     }
 
     Image{
-        x:set_hollow.width
-        y:root.height - set_hollow.height*2
-
         id:set_hollow
+        y:root.height - set_hollow.height*2
+        x:set_hollow.width
         width: set_solid.width
         height: width
         source: "qrc:/item/images/svg/sets/set_hollow.svg"
@@ -34,6 +52,105 @@ Item {
                 minimumY: 0
                 maximumY: root.height -set_hollow.height
             }
+            onClicked: changeState()
         }
     }
+
+    Image{
+        id:list_set
+        x:offset > 0? set_hollow.x + set_hollow.width+itemMargin:set_hollow.x - list_set.width - itemMargin
+        anchors.verticalCenter: set_hollow.verticalCenter
+        width: 20;height: list_set.width
+        mipmap:true
+        source: "qrc:/item/images/svg/sets/file_list.svg"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: callChangeDir()
+        }
+    }
+
+    Image{
+        id:edit_set
+        x:offset > 0? list_set.x + list_set.width+itemMargin:list_set.x - edit_set.width - itemMargin
+        anchors.verticalCenter: set_hollow.verticalCenter
+        width: list_set.width;height: list_set.width
+        opacity:list_set.opacity
+        visible: list_set.visible
+        mipmap:true
+        source: "qrc:/item/images/svg/sets/edit.svg"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: callOnlyEdit()
+        }
+    }
+
+    Image{
+        id:look_set
+        x:offset > 0? edit_set.x + edit_set.width+itemMargin:edit_set.x - look_set.width - itemMargin
+        anchors.verticalCenter: set_hollow.verticalCenter
+        width: edit_set.width;height: look_set.width
+        opacity:list_set.opacity
+        mipmap:true
+        source: "qrc:/item/images/svg/sets/look.svg"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: callOnlyRead()
+        }
+    }
+
+    Image{
+        id:edit_look_set
+        x:offset > 0? look_set.x + look_set.width+itemMargin:look_set.x - edit_look_set.width - itemMargin
+        anchors.verticalCenter: set_hollow.verticalCenter
+        width: edit_set.width;height: look_set.width
+        opacity:list_set.opacity
+        mipmap:true
+        source: "qrc:/item/images/svg/sets/edit_view.svg"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: callReadEdit()
+        }
+    }
+
+    function changeState(){
+        if(set_item.state == "SETTING"){
+            set_item.state ="UNSET"
+        }else{
+            set_item.state ="SETTING"
+        }
+    }
+
+    state:"UNSET"
+
+    states: [
+        State {
+            name: "SETTING"
+            PropertyChanges { target: set_solid; x: set_hollow.x+offset}
+            PropertyChanges { target: set_solid; rotation: 180}
+            PropertyChanges { target: list_set; opacity:1}
+        },
+        State {
+            name: "UNSET"
+            PropertyChanges { target: set_solid; x: set_hollow.x}
+            PropertyChanges { target: set_solid; rotation: 0}
+            PropertyChanges { target: list_set; opacity:0 }
+        }
+    ]
+
+    transitions: [
+        Transition {
+            from: "SETTING"
+            to: "UNSET"
+            PropertyAnimation {target: set_solid; duration: 200;properties: "x"; easing.type: Easing.InOutQuad}
+            PropertyAnimation {target: set_solid; duration: 200;properties: "rotation"; easing.type: Easing.Linear}
+            PropertyAnimation {target: list_set; duration: 500;properties: "opacity"; easing.type: Easing.Linear}
+        },
+        Transition {
+            from: "UNSET"
+            to: "SETTING"
+            PropertyAnimation { target: set_solid; duration: 200;properties: "x"; easing.type: Easing.InOutQuad}
+            PropertyAnimation {target: set_solid; duration: 200;properties: "rotation"; easing.type: Easing.Linear}
+            PropertyAnimation {target: list_set; duration: 500;properties: "opacity"; easing.type: Easing.Linear}
+        }
+    ]
 }
