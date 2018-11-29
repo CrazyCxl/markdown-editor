@@ -7,5 +7,6 @@
         <file>custom/SubTree.qml</file>
         <file>custom/TitleNavigationBar.qml</file>
         <file>custom/SettingsItem.qml</file>
+        <file>custom/items/ImageButton.qml</file>
     </qresource>
 </RCC>

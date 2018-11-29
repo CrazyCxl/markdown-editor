@@ -66,7 +66,7 @@ Rectangle {
 
     TreeView {
         id: view
-        anchors.top: top_item.bottom
+        anchors.top: top_item.visible?top_item.bottom:parent.top
         width: parent.width
         anchors.bottom: parent.bottom
         model: fileMode
