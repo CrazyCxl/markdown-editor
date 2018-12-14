@@ -57,6 +57,7 @@ CONFIG(release, debug|release){
 
 win32 {
     QML_IMPORT_PATH = D:\Qt\5.10.1\msvc2017_64\qml
+    RC_FILE = markdowneditor.rc
 }
 # install
 target.path = $$PWD/bin

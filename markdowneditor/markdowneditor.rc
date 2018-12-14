@@ -1,0 +1,35 @@
+#include "winver.h"
+IDI_ICON1 ICON "./resources/images/32x32/markdown-editor-logo.ico"
+
+#define VERSION_1 0
+#define VERSION_2 0
+#define VERSION_3 1
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION    VERSION_1,VERSION_2,VERSION_3
+ PRODUCTVERSION VERSION_1,VERSION_2,VERSION_3
+ FILEFLAGS      0x0L
+ FILEFLAGSMASK  0x3fL
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "CompanyName", "Chengdu cxl."
+            VALUE "FileDescription", "Cxl Markdown Editor"
+            VALUE "FileVersion", VERSION_1"." VERSION_2"." VERSION_3
+            VALUE "LegalCopyright", "Copyright 2018-2019 The Chengdu Cxl. All rights reserved."
+            VALUE "InternalName", "markdowneditor.exe"
+            VALUE "OriginalFilename", "markdowneditor.exe"
+            VALUE "ProductName", "Cxl Markdown Editor"
+            VALUE "ProductVersion", VERSION_1"." VERSION_2"." VERSION_3
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
