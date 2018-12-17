@@ -6,6 +6,7 @@ import QtQuick.Window 2.1
 import QtQuick.Controls.Styles 1.4
 
 import "./custom"
+import "./custom/navigationbar"
 import cxl.normal 1.0
 
 ApplicationWindow {
@@ -53,10 +54,14 @@ ApplicationWindow {
         onTitleChecked: {
             if(title_data.path !== null){
                 editor.text = title_data.doc
-                editor.path = title_data.path
+                editor.path = typeof title_data.path === 'undefined'?null:title_data.path
             }else{
                 editor.text = ""
             }
+        }
+
+        onCallAddPage: {
+            touchItem(qsTr("New Page"),null,"")
         }
     }
 

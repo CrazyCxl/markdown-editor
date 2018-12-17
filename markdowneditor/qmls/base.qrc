@@ -5,8 +5,9 @@
         <file>custom/MarkdownViewer.qml</file>
         <file>custom/MarkdownEditor.qml</file>
         <file>custom/SubTree.qml</file>
-        <file>custom/TitleNavigationBar.qml</file>
         <file>custom/SettingsItem.qml</file>
         <file>custom/items/ImageButton.qml</file>
+        <file>custom/navigationbar/TitleNavigationBar.qml</file>
+        <file>custom/navigationbar/TitleNavigationItem.qml</file>
     </qresource>
 </RCC>

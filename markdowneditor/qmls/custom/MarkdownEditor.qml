@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.10
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Dialogs 1.3
 
 Flickable{
     anchors.leftMargin: root.stepSize*3
@@ -29,10 +30,29 @@ Flickable{
         context: Qt.ApplicationShortcut
         onActivated: {
             if(navigation_bar.isCurrentItemUnsaved()){
-                var ret = utils.saveDocToFile(editor.text,path)
-                console.log("will save "+path +" "+ret)
-                navigation_bar.setCurrentItemUnsaved(!ret)
+                if(path !== null && path.length !== 0){
+                    saveDoc(path)
+                }else{
+                    save_file_dialog.visible = true
+                }
             }
+        }
+    }
+
+    function saveDoc(path){
+        var ret = utils.saveDocToFile(editor.text,path)
+        console.log("saved "+path +" "+ret)
+        navigation_bar.setCurrentItemUnsaved(!ret)
+    }
+
+    FileDialog{
+        id:save_file_dialog
+        title: qsTr("Save File")
+        folder: shortcuts.home
+        selectMultiple: false
+        nameFilters: [qsTr("Markdown Files (*.md)"),qsTr("Text Files (*.txt)"),qsTr("All Files (*.*)")]
+        onAccepted: {
+            saveDoc(fileUrl)
         }
     }
 }

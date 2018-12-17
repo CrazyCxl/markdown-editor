@@ -9,8 +9,10 @@
 
 #include "utils.h"
 #include <QFile>
+#include <QFileDialog>
 #include <QDebug>
 #include <QSettings>
+#include <QStandardPaths>
 
 Utils::Utils(QQuickItem *parent) : QQuickItem(parent)
 {
