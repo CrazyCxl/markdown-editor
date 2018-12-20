@@ -64,7 +64,9 @@ mqmls = $$PWD/qmls/main.qml \
         $$PWD/qmls/custom/DragLine.qml \
         $$PWD/qmls/custom/MarkdownViewer.qml \
         $$PWD/qmls/custom/MarkdownEditor.qml \
-        $$PWD/qmls/custom/SubTree.qml \
+        $$PWD/qmls/custom/FileTree/SubTree.qml \
+        $$PWD/qmls/custom/FileTree/FileTreeViewStyle.qml \
+        $$PWD/qmls/custom/FileTree/FileTreeRightMenu.qml \
         $$PWD/qmls/custom/SettingsItem.qml \
         $$PWD/qmls/custom/items/ImageButton.qml \
         $$PWD/qmls/custom/navigationbar/TitleNavigationBar.qml \

@@ -6,6 +6,7 @@ import QtQuick.Window 2.1
 import QtQuick.Controls.Styles 1.4
 
 import "./custom"
+import "./custom/FileTree"
 import "./custom/navigationbar"
 import cxl.normal 1.0
 
