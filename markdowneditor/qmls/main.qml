@@ -107,5 +107,8 @@ ApplicationWindow {
 
     SettingsItem{
         onCallChangeDir: file_view.showChangeDirDialog()
+        onCallOnlyEdit: drog_line.state = "EDIT"
+        onCallOnlyRead: drog_line.state = "VIEW"
+        onCallReadEdit: drog_line.state = "EDITVIEW"
     }
 }
