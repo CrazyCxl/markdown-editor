@@ -9,6 +9,7 @@
 
 #include "utils.h"
 #include <QFile>
+#include <QUrl>
 #include <QFileDialog>
 #include <QDebug>
 #include <QSettings>
@@ -60,21 +61,12 @@ void Utils::setSettingsValue(const QString &group, const QString &key, const QVa
     }
 }
 
-QString Utils::filterPath(const QString &path_t)
-{
-    const QString filter = "file:///";
-
-    QString path_r = path_t;
-    if(path_t.startsWith(filter)){
-        path_r = path_r.remove(0,filter.length());
-    }
-
-    return path_r;
-}
-
 QString Utils::readFile(const QString &file_dir)
 {
-    QString path = filterPath(file_dir);
+    QUrl url(file_dir);
+
+    QString path = QDir::toNativeSeparators(url.toLocalFile());
+
     QFile file(path);
     if(!file.exists()){
         qWarning()<<"File not exist! "<<path;
@@ -91,6 +83,13 @@ QString Utils::readFile(const QString &file_dir)
     return QString(content);
 }
 
+QString Utils::getBaseNameFromPath(const QString &file_path)
+{
+    QUrl url(file_path);
+    QString path = QDir::toNativeSeparators(url.toLocalFile());
+    return QFileInfo(path).baseName();
+}
+
 void Utils::textAppendStyleSheet(QQuickTextDocument *qd, const QString &style_url)
 {
     qInfo()<<"textAppendStyleSheet "<<style_url;
@@ -101,7 +100,10 @@ void Utils::textAppendStyleSheet(QQuickTextDocument *qd, const QString &style_ur
 bool Utils::saveDocToFile(const QString &doc, const QString &file_path)
 {
     bool ret = false;
-    QFile file(filterPath(file_path));
+    QUrl url(file_path);
+    QString file_path_t = QDir::toNativeSeparators(url.toLocalFile());
+    qInfo()<<Q_FUNC_INFO<<file_path_t;
+    QFile file(file_path_t);
     if(file.exists()){
         if(file.open(QFile::WriteOnly|QFile::Text)){
             if(file.write(doc.toUtf8()) > 0){

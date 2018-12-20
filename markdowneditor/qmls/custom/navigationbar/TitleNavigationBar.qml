@@ -18,7 +18,7 @@ Rectangle {
             return titles_mode.get(titles_list.currentIndex).unsaved;
         }
 
-        return false;
+        return true;
     }
 
     function touchItem(title,path,doc){
@@ -34,6 +34,32 @@ Rectangle {
             }
         }else{
             titles_list.currentIndex = i
+        }
+    }
+
+    function changeCurrentPath(new_path){
+        var new_path_str = JSON.stringify(new_path)
+        var i = titles_mode.getIndexByPath(new_path_str)
+        if(i === -1){
+            if(titles_list.currentIndex >= 0){
+                //current is null path
+                titles_mode.setProperty(titles_list.currentIndex,"title",
+                                        utils.getBaseNameFromPath(new_path))
+                titles_mode.setProperty(titles_list.currentIndex,"path",new_path_str)
+            }else{
+                //title list is null
+                touchItem(utils.getBaseNameFromPath(new_path),new_path_str,editor.text)
+            }
+        }else if(i === titles_list.currentIndex){
+            //current and new path is same
+        }else{
+            //new path is existed
+            titles_mode.setProperty(titles_list.currentIndex,"title",
+                                    utils.getBaseNameFromPath(new_path))
+            titles_mode.setProperty(titles_list.currentIndex,"path",new_path_str)
+            titles_mode.setProperty(titles_list.currentIndex,"doc",editor.text)
+            console.log("will remove same title "+i+" "+new_path_str)
+            titles_mode.remove(i,1)
         }
     }
 

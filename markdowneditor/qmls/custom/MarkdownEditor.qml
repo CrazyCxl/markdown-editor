@@ -11,6 +11,7 @@ Flickable{
     ScrollBar.vertical: scroller
     property string text
     property string path
+
     TextArea.flickable:  TextArea{
         id:text_area
         selectByMouse: true
@@ -53,6 +54,7 @@ Flickable{
         nameFilters: [qsTr("Markdown Files (*.md)"),qsTr("Text Files (*.txt)"),qsTr("All Files (*.*)")]
         onAccepted: {
             saveDoc(fileUrl)
+            navigation_bar.changeCurrentPath(fileUrl)
         }
     }
 }

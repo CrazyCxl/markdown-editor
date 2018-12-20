@@ -59,6 +59,21 @@ win32 {
     QML_IMPORT_PATH = D:\Qt\5.10.1\msvc2017_64\qml
     RC_FILE = markdowneditor.rc
 }
+
+mqmls = $$PWD/qmls/main.qml \
+        $$PWD/qmls/custom/DragLine.qml \
+        $$PWD/qmls/custom/MarkdownViewer.qml \
+        $$PWD/qmls/custom/MarkdownEditor.qml \
+        $$PWD/qmls/custom/SubTree.qml \
+        $$PWD/qmls/custom/SettingsItem.qml \
+        $$PWD/qmls/custom/items/ImageButton.qml \
+        $$PWD/qmls/custom/navigationbar/TitleNavigationBar.qml \
+        $$PWD/qmls/custom/navigationbar/TitleNavigationItem.qml
+
+qml_scenes.depends = $$mqmls
+qml_scenes.commands =
+QMAKE_EXTRA_TARGETS += qml_scenes
+
 # install
 target.path = $$PWD/bin
 plugins_platforms.path = $$PWD/bin/platforms
