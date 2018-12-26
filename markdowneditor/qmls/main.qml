@@ -112,4 +112,14 @@ ApplicationWindow {
         onCallOnlyRead: drog_line.state = "VIEW"
         onCallReadEdit: drog_line.state = "EDITVIEW"
     }
+
+    DragArea{
+        anchors.fill: parent
+        onTextDrop: {
+            editor.text += text
+            navigation_bar.setCurrentItemUnsaved(true)
+        }
+        onFileDrop: navigation_bar.touchItem(utils.getBaseNameFromPath(file_path),
+                                             file_path,utils.readFile(file_path))
+    }
 }

@@ -63,13 +63,10 @@ void Utils::setSettingsValue(const QString &group, const QString &key, const QVa
 
 QString Utils::readFile(const QString &file_dir)
 {
-    QUrl url(file_dir);
-
-    QString path = QDir::toNativeSeparators(url.toLocalFile());
-
+    QString path = filterNativeSeparators(file_dir);
     QFile file(path);
     if(!file.exists()){
-        qWarning()<<"File not exist! "<<path;
+        qWarning()<<"File not exist! path:"<<path<<" file_dir:"<<file_dir;
         return "";
     }
     if(!file.open(QIODevice::ReadOnly|QIODevice::Text)){
@@ -85,9 +82,18 @@ QString Utils::readFile(const QString &file_dir)
 
 QString Utils::getBaseNameFromPath(const QString &file_path)
 {
-    QUrl url(file_path);
-    QString path = QDir::toNativeSeparators(url.toLocalFile());
+    QString path = filterNativeSeparators(file_path);
     return QFileInfo(path).baseName();
+}
+
+QString Utils::filterNativeSeparators(const QString &file_path)
+{
+    QString path = file_path;
+    if(file_path.contains("file://")){
+        QUrl url(file_path);
+        path = QDir::toNativeSeparators(url.toLocalFile());
+    }
+    return path;
 }
 
 void Utils::textAppendStyleSheet(QQuickTextDocument *qd, const QString &style_url)
@@ -100,8 +106,7 @@ void Utils::textAppendStyleSheet(QQuickTextDocument *qd, const QString &style_ur
 bool Utils::saveDocToFile(const QString &doc, const QString &file_path)
 {
     bool ret = false;
-    QUrl url(file_path);
-    QString file_path_t = QDir::toNativeSeparators(url.toLocalFile());
+    QString file_path_t = filterNativeSeparators(file_path);
     qInfo()<<Q_FUNC_INFO<<file_path_t;
     QFile file(file_path_t);
     if(file.exists()){

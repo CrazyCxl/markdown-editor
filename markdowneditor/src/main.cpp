@@ -1,7 +1,7 @@
 ﻿#include "document.h"
 #include "utils.h"
 #include "filemodel.h"
-
+#include "dragarea.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtQml>
@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     qmlRegisterType<Document>("cxl.normal", 1, 0, "Document");
+    qmlRegisterType<DragArea>("cxl.normal", 1, 0, "DragArea");
     qmlRegisterType<Utils>("cxl.normal", 1, 0, "Utils");
     qmlRegisterUncreatableType<FileModel>("cxl.normal", 1, 0,
                                                        "FileModel", "Cannot create a FileSystemModel instance.");

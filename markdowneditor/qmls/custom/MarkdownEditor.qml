@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.3
+import cxl.normal 1.0
 
 Flickable{
     anchors.leftMargin: root.stepSize*3

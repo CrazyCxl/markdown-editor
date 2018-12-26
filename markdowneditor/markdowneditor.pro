@@ -8,13 +8,15 @@ CONFIG += c++11
 HEADERS += \
     src/document.h \
     src/filemodel.h \
-    src/utils.h
+    src/utils.h \
+    src/dragarea.h
 
 SOURCES = \
     src/main.cpp \
     src/document.cpp \
     src/filemodel.cpp \
-    src/utils.cpp
+    src/utils.cpp \
+    src/dragarea.cpp
 
 RESOURCES = \
     resources/markdowneditor.qrc \

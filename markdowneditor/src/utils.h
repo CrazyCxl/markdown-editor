@@ -28,6 +28,7 @@ public:
 
     Q_INVOKABLE QString readFile(const QString &file_dir);
     Q_INVOKABLE QString getBaseNameFromPath(const QString &file_path);
+    Q_INVOKABLE QString filterNativeSeparators(const QString &file_path);
     Q_INVOKABLE void textAppendStyleSheet(QQuickTextDocument* qd,const QString &style_url);
     Q_INVOKABLE bool saveDocToFile(const QString &doc, const QString &file_path);
 

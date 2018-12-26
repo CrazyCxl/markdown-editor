@@ -3,14 +3,10 @@ A qml markdown editor
 
 ![home](https://raw.githubusercontent.com/CrazyCxl/markdown-editor/master/screenShot/home.png)
 
-But not done yet...
-
 # Todo list
 
-- The tip when closing
-- User Settings
-- Shortcut key
-- Right mouse button menu
+- Syntax highlighting
+- The chart support
 
 # Reference
 - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
