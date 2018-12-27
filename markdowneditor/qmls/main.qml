@@ -122,4 +122,11 @@ ApplicationWindow {
         onFileDrop: navigation_bar.touchItem(utils.getBaseNameFromPath(file_path),
                                              file_path,utils.readFile(file_path))
     }
+
+    Component.onCompleted: {
+        if(typeof argPath !== 'undefined'){
+            navigation_bar.touchItem(utils.getBaseNameFromPath(argPath),
+                                     argPath,utils.readFile(argPath))
+        }
+    }
 }

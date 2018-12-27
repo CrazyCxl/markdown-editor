@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication::setAttribute(Qt::AA_UseDesktopOpenGL);
     QGuiApplication app(argc, argv);
+    qInfo()<<"args:"<<app.arguments();
     QtWebEngine::initialize();
 //    if(app.arguments().contains("--log")){
 //        is_loged = true;
@@ -30,6 +31,9 @@ int main(int argc, char *argv[])
 
     FileModel *file_model = new FileModel();
     engine.rootContext()->setContextProperty("fileModel", file_model);
+    if(app.arguments().length() == 2){
+        engine.rootContext()->setContextProperty("argPath", app.arguments().last());
+    }
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
