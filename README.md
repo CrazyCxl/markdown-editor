@@ -1,5 +1,7 @@
 # markdown-editor
-A qml markdown editor
+A qml markdown editor 
+
+download [releases](https://github.com/CrazyCxl/markdown-editor/releases)
 
 ![home](https://raw.githubusercontent.com/CrazyCxl/markdown-editor/master/screenShot/home.png)
 
