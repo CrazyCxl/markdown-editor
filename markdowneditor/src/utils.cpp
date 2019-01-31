@@ -107,19 +107,15 @@ bool Utils::saveDocToFile(const QString &doc, const QString &file_path)
     QString file_path_t = filterNativeSeparators(file_path);
     qInfo()<<Q_FUNC_INFO<<file_path_t;
     QFile file(file_path_t);
-    if(file.exists()){
-        if(file.open(QFile::WriteOnly|QFile::Text)){
-            if(file.write(doc.toUtf8()) > 0){
-                ret = true;
-            }else{
-                qCritical()<<"save file but write to file failed!";
-            }
-            file.close();
+    if(file.open(QFile::WriteOnly|QFile::Text)){
+        if(file.write(doc.toUtf8()) > 0){
+            ret = true;
         }else{
-            qCritical()<<"save file but open failed";
+            qCritical()<<"save file but write to file failed!";
         }
+        file.close();
     }else{
-        qCritical()<<"save file but file is not exit!";
+        qCritical()<<"save file but open failed";
     }
 
     return ret;

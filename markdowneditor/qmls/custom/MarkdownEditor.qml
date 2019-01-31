@@ -52,6 +52,8 @@ Flickable{
         title: qsTr("Save File")
         folder: shortcuts.home
         selectMultiple: false
+        selectExisting :false
+        selectFolder:false
         nameFilters: [qsTr("Markdown Files (*.md)"),qsTr("Text Files (*.txt)"),qsTr("All Files (*.*)")]
         onAccepted: {
             saveDoc(fileUrl)
