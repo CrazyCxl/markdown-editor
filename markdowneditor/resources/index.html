@@ -2,12 +2,14 @@
 <html lang="en">
 <meta charset="utf-8">
 <head>
-  <link rel="stylesheet" type="text/css" href="3rdparty/markdown.css">
-  <link rel="stylesheet" href="markdown-it/mathjax.css">
-  <script src="markdown-it/markdown-it.js"></script>
-  <script src="markdown-it/markdown-it-footnote.js"></script>
-  <script src="markdown-it/markdown-it-math.js"></script>
-  <script src="qwebchannel.js"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <link rel="stylesheet" type="text/css" href="3rdparty/markdown.css">
+    <script src="markdown-it/markdown-it.js"></script>
+    <script src="markdown-it/markdown-it-footnote.js"></script>
+    <!--<script src="markdown-it/markdown-it-math.js"></script>-->
+    <script src="qwebchannel.js"></script>
 </head>
 <body class="markdown-body">
   <div id="placeholder"></div>
@@ -21,7 +23,7 @@
             html: true,
             breaks: true,
             linkify: true
-        }).use(markdownitFootnote).use(markdownitMath);
+        }).use(markdownitFootnote);
         var mdHtml = md.render(text);
         placeholder.innerHTML ="<body class=\"markdown\">"+ mdHtml+"</body>";
   }
