@@ -2,17 +2,19 @@
 <html lang="en">
 <meta charset="utf-8">
 <head>
-    <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
-    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <link rel="stylesheet" type="text/css" href="3rdparty/markdown.css">
     <script src="markdown-it/markdown-it.js"></script>
     <script src="markdown-it/markdown-it-footnote.js"></script>
-    <!--<script src="markdown-it/markdown-it-math.js"></script>-->
     <script src="qwebchannel.js"></script>
 </head>
 <body class="markdown-body">
   <div id="placeholder"></div>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    messageStyle: "none"
+  });
+  </script>
   <script>
   'use strict';
 
@@ -26,6 +28,7 @@
         }).use(markdownitFootnote);
         var mdHtml = md.render(text);
         placeholder.innerHTML ="<body class=\"markdown\">"+ mdHtml+"</body>";
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
   }
 
   new QWebChannel(qt.webChannelTransport,
