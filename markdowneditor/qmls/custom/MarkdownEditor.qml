@@ -57,6 +57,7 @@ Flickable{
         nameFilters: [qsTr("Markdown Files (*.md)"),qsTr("Text Files (*.txt)"),qsTr("All Files (*.*)")]
         onAccepted: {
             saveDoc(fileUrl)
+            editor.path = fileUrl
             navigation_bar.changeCurrentPath(fileUrl)
         }
     }

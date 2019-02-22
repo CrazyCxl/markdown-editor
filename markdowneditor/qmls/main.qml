@@ -129,4 +129,35 @@ ApplicationWindow {
                                      argPath,utils.readFile(argPath))
         }
     }
+
+    property bool sureClose: false
+
+    onClosing: {
+        if(navigation_bar.hasItemUnsaved() && !sureClose){
+            message_dialog.visible = true
+            close.accepted = false
+        }
+    }
+
+    Dialog{
+        id:message_dialog
+        title: qsTr("Warning")
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+        onAccepted: {
+            sureClose = true
+            root.close()
+        }
+
+        contentItem: Rectangle {
+            implicitWidth: 300
+            implicitHeight: 60
+            Text {
+                text: qsTr("You have unsaved content, are you sure to close?")
+                anchors.centerIn: parent
+            }
+        }
+
+        standardButtons:StandardButton.Yes|StandardButton.Cancel
+    }
 }

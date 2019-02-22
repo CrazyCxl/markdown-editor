@@ -7,6 +7,15 @@ Rectangle {
     signal titleChecked(var title_data)
     signal callAddPage()
 
+    function hasItemUnsaved(){
+        for(var i = 0;i<titles_mode.count;i++){
+            if(titles_mode.get(i).unsaved){
+                return true
+            }
+        }
+        return false
+    }
+
     function setCurrentItemUnsaved(status){
         if(titles_list.currentIndex >= 0){
             titles_mode.setProperty(titles_list.currentIndex,"unsaved",status)
