@@ -16,6 +16,12 @@ Rectangle {
         return false
     }
 
+    function setItemDoc(doc,index){
+        if(index >= 0){
+            titles_mode.setProperty(index,"doc",doc)
+        }
+    }
+
     function setCurrentItemUnsaved(status){
         if(titles_list.currentIndex >= 0){
             titles_mode.setProperty(titles_list.currentIndex,"unsaved",status)
@@ -96,13 +102,18 @@ Rectangle {
 
         delegate:TitleNavigationItem{}
 
+        property int indexSave: -1
         onCurrentIndexChanged: {
+            setItemDoc(editor.text,indexSave)
+
             if(currentIndex >= 0){
                 titleChecked(titles_mode.get(currentIndex))
             }else{
                 var js = {"title":null,"path":null,"unsaved":false,"doc":null}
                 titleChecked(js)
             }
+
+            indexSave = currentIndex
         }
     }
 
