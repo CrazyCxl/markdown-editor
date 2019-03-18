@@ -24,7 +24,7 @@
   var updateText = function(text) {
         var md = markdownit({
             html: true,
-            breaks: true,
+            breaks: false,
             linkify: true
         }).use(markdownitFootnote);
         var mdHtml = md.render(text);
