@@ -86,6 +86,7 @@ Rectangle {
         orientation: ListView.Horizontal
         width: itemWidth*titles_mode.count
         model: titles_mode
+        interactive:false
 
         property int itemWidth: {
             var h = 50;

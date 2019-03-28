@@ -19,6 +19,7 @@ Flickable{
         text: editor.text
         font.pixelSize: 15
         font.family: "Microsoft YaHei UI"
+        rightPadding:20
         onTextChanged: {
             if(editor.text !== text_area.text){
                 editor.text = text_area.text
