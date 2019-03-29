@@ -17,7 +17,7 @@ Rectangle {
     }
 
     function setItemDoc(doc,index){
-        if(index >= 0){
+        if(index >= 0 && titles_list.count > index){
             titles_mode.setProperty(index,"doc",doc)
         }
     }

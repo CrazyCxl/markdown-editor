@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.0
 
 Component{
     Rectangle{
@@ -31,6 +32,7 @@ Component{
         }
 
         Text {
+            id:tilte_text
             text: title
             anchors.centerIn: parent
         }
@@ -40,6 +42,22 @@ Component{
             anchors.fill: parent
             onClicked:titles_list.currentIndex = index
             hoverEnabled: true
+            onEntered: {
+                var tmp = titles_mode.get(index).path
+                if (typeof tmp !== 'undefined'){
+                    title_path_tooltip.visible = true
+                }
+            }
+            onExited: title_path_tooltip.visible = false
+            ToolTip{
+                id:title_path_tooltip
+                delay:500
+                onVisibleChanged:{
+                    if(title_path_tooltip.visible){
+                        title_path_tooltip.text = utils.filterNativeSeparators(titles_mode.get(index).path)
+                    }
+                }
+            }
         }
 
         Rectangle{
