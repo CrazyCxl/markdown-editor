@@ -102,10 +102,10 @@ Rectangle {
             acceptedButtons: Qt.RightButton
             onClicked: mouse.accepted = false;
             onPressed: {
+                var index_t = parent.indexAt(mouse.x,mouse.y)
                 right_menu.x = mouse.x
                 right_menu.y = mouse.y
                 right_menu.visible = true
-                var index_t = parent.indexAt(mouse.x,mouse.y)
                 view.selection.setCurrentIndex(index_t,ItemSelectionModel.Select)
                 right_menu.reload(index_t)
                 mouse.accepted = false;

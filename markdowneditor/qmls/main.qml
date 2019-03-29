@@ -6,6 +6,7 @@ import QtQuick.Window 2.1
 import QtQuick.Controls.Styles 1.4
 
 import "./custom"
+import "./custom/partition"
 import "./custom/FileTree"
 import "./custom/navigationbar"
 import cxl.normal 1.0
@@ -29,20 +30,6 @@ ApplicationWindow {
 
     Utils{
         id:utils
-    }
-
-    SubTree{
-        id:file_view
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.bottom: parent.bottom
-        fileMode:fileModel
-        enableChangeDir: true
-        width:200
-
-        onPathSelected: {
-            navigation_bar.touchItem(file_view.selectTitle,path,utils.readFile(path))
-        }
     }
 
     TitleNavigationBar{
@@ -106,7 +93,52 @@ ApplicationWindow {
 //        anchors.topMargin: root.stepSize*3
     }
 
+    Triangle{
+        property bool isOnlyEdit: false
+        anchors.bottom:drog_line.bottom
+        anchors.right:drog_line.left
+        onClicked: {
+            isOnlyEdit = !isOnlyEdit
+            if(isOnlyEdit){
+                drog_line.state = "EDIT"
+            }else{
+                drog_line.state = "EDITVIEW"
+            }
+        }
+    }
+
+    Triangle{
+        property bool isOnlyRead: false
+        anchors.bottom:parent.bottom
+        anchors.left:drog_line.left
+        trianglePosition:leftBottom
+        color: "#c0c0c0"
+        onClicked: {
+            isOnlyRead = !isOnlyRead
+            if(isOnlyRead){
+                drog_line.state = "VIEW"
+            }else{
+                drog_line.state = "EDITVIEW"
+            }
+        }
+    }
+
+    SubTree{
+        id:file_view
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        fileMode:fileModel
+        enableChangeDir: true
+        width:200
+
+        onPathSelected: {
+            navigation_bar.touchItem(file_view.selectTitle,path,utils.readFile(path))
+        }
+    }
+
     SettingsItem{
+        visible: false
         onCallChangeDir: file_view.showChangeDirDialog()
         onCallOnlyEdit: drog_line.state = "EDIT"
         onCallOnlyRead: drog_line.state = "VIEW"

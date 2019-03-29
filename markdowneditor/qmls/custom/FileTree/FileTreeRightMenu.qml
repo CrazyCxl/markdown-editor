@@ -6,8 +6,11 @@ Menu{
     property var selectFileIndex
     property bool isDir: false
     property bool isDirExpanded: false
+    property bool isSpaceClick: false
     MenuItem{
         text: isDir? (isDirExpanded ? qsTr("Fold") : qsTr("Expanded") ): qsTr("Open")
+        visible:!isSpaceClick
+        height:visible?implicitHeight :0
         onTriggered: {
             if(isDir){
                 if(isDirExpanded){
@@ -24,19 +27,35 @@ Menu{
 
     MenuItem{
         text: qsTr("Open the folder")
+        visible:!isSpaceClick
+        height:visible?implicitHeight :0
         onTriggered: {
             var url = fileMode.data(selectFileIndex, FileModel.DirStringRole)
             Qt.openUrlExternally(url)
         }
     }
 
+    MenuItem{
+        text: qsTr("Set working folders")
+        visible:isSpaceClick
+        height:visible?implicitHeight :0
+        onTriggered: {
+            file_view.showChangeDirDialog()
+        }
+    }
+
     function reload(index){
         selectFileIndex = index
-        if(!fileMode.data(index, FileModel.IsDirRole)){
-            isDir = false
+        if(fileMode.data(index, FileModel.IsValidRole)){
+            isSpaceClick = false
+            if(!fileMode.data(index, FileModel.IsDirRole)){
+                isDir = false
+            }else{
+                isDir = true
+                isDirExpanded = view.isExpanded(index)
+            }
         }else{
-            isDir = true
-            isDirExpanded = view.isExpanded(index)
+            isSpaceClick = true
         }
     }
 }

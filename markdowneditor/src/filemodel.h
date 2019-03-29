@@ -29,7 +29,8 @@ public:
         DirStringRole,
         BaseNameStringRole,
         IsDirRole,
-        IsMarkdownFileRole
+        IsMarkdownFileRole,
+        IsValidRole
     };
 
     Q_ENUM(Roles)

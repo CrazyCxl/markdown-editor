@@ -57,13 +57,15 @@ CONFIG(release, debug|release){
     DESTDIR = $$PWD/output/release
 }
 
+QML_IMPORT_PATH = $$[QT_INSTALL_QML]
+
 win32 {
-    QML_IMPORT_PATH = D:\Qt\5.10.1\msvc2017_64\qml
     RC_FILE = markdowneditor.rc
 }
 
 mqmls = $$PWD/qmls/main.qml \
-        $$PWD/qmls/custom/DragLine.qml \
+        $$PWD/qmls/custom/partition/DragLine.qml \
+        $$PWD/qmls/custom/partition/Triangle.qml \
         $$PWD/qmls/custom/MarkdownViewer.qml \
         $$PWD/qmls/custom/MarkdownEditor.qml \
         $$PWD/qmls/custom/FileTree/SubTree.qml \

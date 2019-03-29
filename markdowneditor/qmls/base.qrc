@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>custom/DragLine.qml</file>
         <file>custom/MarkdownViewer.qml</file>
         <file>custom/MarkdownEditor.qml</file>
         <file>custom/SettingsItem.qml</file>
@@ -11,5 +10,7 @@
         <file>custom/FileTree/SubTree.qml</file>
         <file>custom/FileTree/FileTreeViewStyle.qml</file>
         <file>custom/FileTree/FileTreeRightMenu.qml</file>
+        <file>custom/partition/DragLine.qml</file>
+        <file>custom/partition/Triangle.qml</file>
     </qresource>
 </RCC>

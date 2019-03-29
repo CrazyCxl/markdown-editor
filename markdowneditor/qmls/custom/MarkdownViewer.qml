@@ -34,6 +34,7 @@ Item {
         height: web_view.height
         property bool callScrollUp: false
         property double  scrollEnhance: 0
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
         onWheel: {
             scroll_run_timer.stop()
             scroll_stop_timer.stop()
